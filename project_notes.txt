@@ -1,0 +1,36 @@
+Harry Potter Text Adventure Game
+
+Travel through Hogwarts and the grounds to destroy horcruxes before defeating
+Voldemort. Along the way it is important to defeat any enemies
+
+
+Backend Planning
+Create the map (Need to think forward to front end for this)
+    a series of 2 d lists. Each spot is either empty or full of something.
+    These lists have functions to connect them defining doors. Seamless map.
+
+    List of locations
+        Forbidden Forest
+        Great Hall
+        
+
+Create Position on Map Class
+    Contains what room followed by grid coordinates
+
+Create a Horcrux class
+    With name, description, position on map and weapon to destroy it
+
+Create an Item class
+    With name, description, position on map
+
+Create Enemies to Battle
+    with name, health points (hp), position on map and spells with damage
+    is_alive()
+
+Create Harry Potter class
+    With name, health Points, and spells with damage, inventory, position on
+    the map
+    can_destroy(): Determines if the player has the item necissary to
+    is_alive()
+
+Frontend Planning
