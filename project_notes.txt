@@ -6,18 +6,19 @@ Voldemort. Along the way it is important to defeat any enemies
 
 Backend Planning
 Create the map (Need to think forward to front end for this)
-    a series of 2 d lists. Each spot is either empty or full of something.
+    A series of 2 d lists. Each spot is either empty or full of something.
     These lists have functions to connect them defining doors. Seamless map.
 
-    List of locations
+    List of Locations
         Forbidden Forest
         Great Hall
-        
+        Gryffindor Common Room
+        Quidditch Pitch
 
-Create Position on Map Class
+Create Position on Map Class. Each Person and Thing will have a Position
     Contains what room followed by grid coordinates
 
-Create a Horcrux class
+Create a Horcrux Class
     With name, description, position on map and weapon to destroy it
 
 Create an Item class
