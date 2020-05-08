@@ -13,7 +13,7 @@ Create the map (Need to think forward to front end for this)
         Forbidden Forest
         Great Hall
         Gryffindor Common Room
-        Quidditch Pitch
+        Shrieking Shack
 
 Create Position on Map Class. Each Person and Thing will have a Position
     Contains what room followed by grid coordinates
