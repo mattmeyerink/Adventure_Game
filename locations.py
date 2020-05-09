@@ -7,25 +7,16 @@ from tkinter import *
 
 class Location:
 
-    def __init__(self, root, name, description, graphics):
+    window_height = 600
+    window_width = 800
+
+    def __init__(self, root):
 
         self.root = root
-        self.name = name
-        self.description = description
-        self.graphics = graphics
 
-#Testing defining a canvas for a specific location on the map
-great_hall_image = Canvas(self.root, width=800, height=600, bg="blue")
-
-great_hall = Location(myGame.root, "Great Hall", "Main hall at Hogwarts containing the four house " +
-            "tables. Big feasts and daily meals occur here.", great_hall_image)
-
-gryf_common_room = Location(myGame.root, "Gryffindor Common Room", "Gryffindor common room. " +
-            "Many post quidditch parties and late night discussions occured here.")
-
-shrieking_shack = Location(myGame.root, "Shrieking_Shack", "Listed as the most haunted dwelling " +
-            "in Britian. However it was built and utilized by Remus Lupin during his " +
-            "werewolf transformations.")
-
-forbidden_forest = Location(myGame.root, "Forbidden Forest", "Strictly out of bounds to all students. " +
-            "Except for detention where students will traverse the paths at night unsupervised.")
+        #Great Hall Data
+        great_hall_image = PhotoImage(file="Great_Hall.gif")
+        self.great_hall_canvas = Canvas(self.root, width=self.window_width, height=self.window_height)
+        #First two inputs are placement of center of the image
+        self.great_hall_canvas.create_image(self.window_width/2, self.window_height/2, anchor=CENTER, image=great_hall_image)
+        self.great_hall_canvas.image = great_hall_image

@@ -1,4 +1,5 @@
-from locations import *
+from tkinter import *
+from locations import Location
 
 class Game:
 
@@ -6,8 +7,11 @@ class Game:
         #The main window that needs to be pased into the game
         self.root = root
 
+        #Set up an instance of all of the locations
+        self.locations = Location(self.root)
+
         #Canvas for a location that will appear on the screen
-        self.screen = great_hall.graphics
+        self.screen = self.locations.great_hall_canvas
 
     #Changes the screen to a new location
     def change_location(self, location):
@@ -19,3 +23,4 @@ class Game:
 
 #Function to run a game using the game class
 def start_game(game):
+    game.screen.pack()

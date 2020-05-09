@@ -35,3 +35,5 @@ Create Harry Potter class
     is_alive()
 
 Frontend Planning
+
+Great Hall Image by Karl Wilhelm on 3D Warehouse
