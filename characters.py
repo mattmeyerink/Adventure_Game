@@ -5,10 +5,12 @@
 
 class Enemy:
 
-    def __init__(self, name, hp, location, spell):
-        self.name = name
-        self.hp = hp
-        self.location = location
+    def __init__(self,root):
+        self.root = root
+
+        self.voldy_name = "Lord Voldemort"
+        self.voldy_hp = 250
+        self.location = "Courtyard"
         self.spell = spell
 
     def is_alive(self)
