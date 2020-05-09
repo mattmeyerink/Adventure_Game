@@ -12,7 +12,7 @@ def start_game():
     quit_button.destroy()
     construction_message = Label(root, text="Working on the game!", font=("Cochin", 40, "bold"))
     construction_message.place(relx=0.5, rely=0.5, anchor=CENTER)
-    #Testing packing canvas from locations
+    #TODO figure outhow to output the canvas I draw in the locations file
     great_hall_image.pack()
 
 #Main Menu Title

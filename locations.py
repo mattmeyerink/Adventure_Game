@@ -4,7 +4,7 @@
 #File containing class definition for locations
 
 from tkinter import *
-from menu import *
+from menu import root
 
 class Location:
 
@@ -15,10 +15,13 @@ class Location:
         self.graphics = graphics
 
 #Testing defining a canvas for a specific location on the map
-great_hall_image = Canvas(root, width=800, height=600)
+#Will global variables help this?
+global great_hall_image
+great_hall_image = Canvas(root, width=800, height=600, bg="red")
 
+global great_hall
 great_hall = Location("Great Hall", "Main hall at Hogwarts containing the four house " +
-            "tables. Big feasts and daily meals occur here.")
+            "tables. Big feasts and daily meals occur here.", great_hall_image)
 
 gryf_common_room = Location("Gryffindor Common Room", "Gryffindor common room. " +
             "Many post quidditch parties and late night discussions occured here.")
