@@ -3,12 +3,19 @@
 
 #File containing class definition for locations
 
+from tkinter import *
+from menu import *
+
 class Location:
 
-    def __init__(self, name, description):
+    def __init__(self, name, description, graphics):
 
         self.name = name
         self.description = description
+        self.graphics = graphics
+
+#Testing defining a canvas for a specific location on the map
+great_hall_image = Canvas(root, width=800, height=600)
 
 great_hall = Location("Great Hall", "Main hall at Hogwarts containing the four house " +
             "tables. Big feasts and daily meals occur here.")
