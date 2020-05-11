@@ -4,28 +4,37 @@
 # File containing class definition for locations
 
 from tkinter import *
+from utility import *
 
 class Location:
 
-    window_height = 600
-    window_width = 800
+    def __init__(self, canvas):
 
-    def __init__(self, root):
+        self.canvas = canvas
 
-        self.root = root
 
-        #Great Hall Data
-        self.great_hall_canvas = Canvas(self.root, width=self.window_width,
-            height=self.window_height, bg="wheat2")
+# Function that will add all of the pre-made location objects to the game class.
+# Will create a Dictionary of location objects
+def add_locations(root):
 
-        #Four house Tables
-        self.great_hall_canvas.create_rectangle(100, 250, 175 , 500, fill="MistyRose4")
-        self.great_hall_canvas.create_rectangle(275, 250, 350, 500, fill="MistyRose4")
-        self.great_hall_canvas.create_rectangle(450, 250, 525, 500, fill="MistyRose4")
-        self.great_hall_canvas.create_rectangle(625, 250, 700, 500, fill="MistyRose4")
+    #Initialize dictionary of locaitons
+    locations_dict = {}
 
-        #High Table
-        self.great_hall_canvas.create_rectangle(200, 50, 600, 125, fill="MistyRose4")
+    #Initialize the Great Hall
+    great_hall = Location(Canvas(root, width=window_width,
+                                            height=window_height, bg="wheat2"))
 
-        #Lord Voldemort Graphics (Circle Radius of 20)
-        self.great_hall_canvas.create_oval(380, 155, 420, 195, fill="black")
+    #Add house tables
+    great_hall.canvas.create_rectangle(100, 250, 175 , 500, fill="MistyRose4")
+    great_hall.canvas.create_rectangle(275, 250, 350, 500, fill="MistyRose4")
+    great_hall.canvas.create_rectangle(450, 250, 525, 500, fill="MistyRose4")
+    great_hall.canvas.create_rectangle(625, 250, 700, 500, fill="MistyRose4")
+
+    #Add high table
+    great_hall.canvas.create_rectangle(200, 50, 600, 125, fill="MistyRose4")
+
+    #Add great_hall to the list of locations
+    locations_dict["Great Hall"] = great_hall
+
+    #Return the completed dictionary of locations
+    return locations_dict

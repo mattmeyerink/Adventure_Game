@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
-
 from game import *
+from utility import *
 
 class Window:
 
@@ -9,7 +9,7 @@ class Window:
 
         self.root = Tk()
         self.root.title("Hogwarts Adventure")
-        self.root.geometry("1200x640")
+        self.root.geometry(str(window_width)+ "x" + str(window_height))
 
         #Initialize the main title of the game
         self.main_title = Label(self.root, text="Welcome to a Hogwarts Adventure!",
@@ -38,9 +38,5 @@ class Window:
         self.main_title.destroy()
         self.game_button.destroy()
         self.quit_button.destroy()
-
-        #Set up an instance of a game
-        the_game = Game(self.root)
-
         #Run the game function using created game instance
-        start_game(the_game)
+        start_game(self.root)
