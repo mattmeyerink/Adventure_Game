@@ -15,8 +15,11 @@ class Game:
 
         self.root = root
         self.locations = add_locations(self.root)
-        self.hero = Hero(self.root)
-        #self.enemies = add_enemies(self.root)
+        #Current canvas
+        self.screen = self.locations["Great Hall"].canvas
+
+        #self.hero = Hero(self.root)
+        #self.enemies = add_enemies(self.screen)
 
         #Current canvas
         self.screen = self.locations["Great Hall"].canvas
@@ -25,7 +28,7 @@ class Game:
 #Function to run a game using the game class
 def start_game(root):
 
-    #Initialize an instance of the game 
+    #Initialize an instance of the game
     game = Game(root)
 
     game.screen.pack()
