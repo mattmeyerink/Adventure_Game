@@ -21,6 +21,8 @@ class Game:
         self.screen = self.locations["Great Hall"].canvas
         self.hero = Hero(self.screen)
 
+    def place_screen(self):
+        self.screen.place(anchor=NW)
 
 #Function to run a game using the game class
 def start_game(root):
@@ -32,7 +34,7 @@ def start_game(root):
     print_enemies(game.current_location, game.screen, game.enemies)
 
     #Print the starting room
-    game.screen.pack()
+    game.place_screen()
 
     #Set up the movement keys
     root.bind("d", game.hero.move_right)

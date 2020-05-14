@@ -8,9 +8,12 @@ from utility import *
 
 class Location:
 
-    def __init__(self, canvas):
+    def __init__(self, canvas, exit):
 
         self.canvas = canvas
+
+        #Adding the exit points to the locations 
+        self.exit = exit
 
 
 # Function that will add all of the pre-made location objects to the game class.
@@ -21,6 +24,7 @@ def add_locations(root):
     locations_dict = {}
 
     #Initialize the Great Hall
+    great_hall_exit = (window_height - character_size)
     great_hall = Location(Canvas(root, width=window_width,
                                             height=window_height, bg="wheat2"))
 

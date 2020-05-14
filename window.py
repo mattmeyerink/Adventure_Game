@@ -9,7 +9,7 @@ class Window:
 
         self.root = Tk()
         self.root.title("Hogwarts Adventure")
-        self.root.geometry(str(window_width)+ "x" + str(window_height))
+        self.root.geometry(str(window_width)+ "x" + str(frame_height))
 
         #Initialize the main title of the game
         self.main_title = Label(self.root, text="Welcome to a Hogwarts Adventure!",
