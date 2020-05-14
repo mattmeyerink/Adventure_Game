@@ -9,27 +9,43 @@ from utility import *
 
 class Enemy:
 
-    def __init__(self, name, graphics):
+    def __init__(self, name, location, color, x_position, y_position):
 
         self.name = name
-        self.graphics = graphics
+        self.location = location
+        self.color = color
+        self.x_position = x_position
+        self.y_position = y_position
 
 
 # Function that will add all of the pre-made enemy objects to the game class.
-# Will create a dictionary of enemy objects sorted by location
-def add_enemies(canvas):
+# Will create a list of enemy objects
+def add_enemies():
 
     #Initialize dictionary of enemies
-    enemies_dict = {}
+    enemies_list = {}
 
     #Initialize Lord Voldemort
-    lord_voldy_canvas = canvas.create_oval((window_width / 2) - character_size,
-        100 - character_size, (window_width / 2) + character_size,
-        100 + character_size, fill="black")
-    lord_voldy = Enemy("Lord Voldemort", lord_voldy_canvas)
+    lord_voldy = Enemy("Lord Voldemort", "Great Hall", "black",
+                                        window_width / 2, window_height / 3.5)
 
-    #Add Lord Voldemort to dictionary
-    enemies_dict[lord_voldy.name] = lord_voldy
+    #Add Lord Voldemort to list
+    enemies_list[0] = lord_voldy
 
     #Return dicitonary of enemies
-    return enemies_dict
+    return enemies_list
+
+# prints the enemies located in the current location to the screen
+def print_enemies(current_location, screen, enemies):
+
+    for i in enemies:
+        if enemies[i].location == current_location:
+
+            #Calculate dimensions of character oval
+            x1 = enemies[i].x_position - character_size
+            y1 = enemies[i].y_position - character_size
+
+            x2 = enemies[i].x_position + character_size
+            y2 = enemies[i].y_position + character_size
+
+            screen.create_oval(x1, y1, x2, y2, fill=enemies[i].color)

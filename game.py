@@ -7,7 +7,8 @@
 
 from tkinter import *
 from locations import *
-from characters import *
+from enemies import *
+from hero import *
 
 class Game:
 
@@ -15,14 +16,10 @@ class Game:
 
         self.root = root
         self.locations = add_locations(self.root)
-        #Current canvas
+        self.enemies = add_enemies()
+        self.current_location = "Great Hall"
         self.screen = self.locations["Great Hall"].canvas
-
-        #self.hero = Hero(self.root)
-        #self.enemies = add_enemies(self.screen)
-
-        #Current canvas
-        self.screen = self.locations["Great Hall"].canvas
+        self.hero = Hero(self.screen)
 
 
 #Function to run a game using the game class
@@ -31,4 +28,14 @@ def start_game(root):
     #Initialize an instance of the game
     game = Game(root)
 
+    #Add the enemies in the current location to the screen
+    print_enemies(game.current_location, game.screen, game.enemies)
+
+    #Print the starting room
     game.screen.pack()
+
+    #Set up the movement keys
+    root.bind("d", game.hero.move_right)
+    root.bind("a", game.hero.move_left)
+    root.bind("s", game.hero.move_forward)
+    root.bind("w", game.hero.move_backward)
