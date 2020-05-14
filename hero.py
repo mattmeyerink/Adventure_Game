@@ -20,15 +20,50 @@ class Hero:
         self.widget =  self.canvas.create_oval(self.x1, self.y1,
                                         self.x2, self.y2, fill=self.hero_color)
 
+        self.initial_overlap = self.canvas.find_overlapping(self.x1,
+                                                    self.y1, self.x2, self.y2)
+
     #Functions to move the hero right, left, forward, and backward
     def move_right(self, event):
         self.canvas.move(self.widget, movement_amount, 0)
 
+        #Determine the new hero coordinates
+        x1, y1, x2, y2 = self.canvas.coords(self.widget)
+
+        #Undo the movement if it causes overlap
+        if (not self.canvas.find_overlapping(x1, y1, x2, y2) ==
+                                                        self.initial_overlap):
+            self.canvas.move(self.widget, -movement_amount, 0)
+
     def move_left(self, event):
         self.canvas.move(self.widget, -movement_amount, 0)
+
+        #Determine the new hero coordinates
+        x1, y1, x2, y2 = self.canvas.coords(self.widget)
+
+        #Undo the movement if it causes overlap
+        if (not self.canvas.find_overlapping(x1, y1, x2, y2) ==
+                                                        self.initial_overlap):
+            self.canvas.move(self.widget, movement_amount, 0)
 
     def move_forward(self, event):
         self.canvas.move(self.widget, 0, movement_amount)
 
+        #Determine the new hero coordinates
+        x1, y1, x2, y2 = self.canvas.coords(self.widget)
+
+        #Undo the movement if it causes overlap
+        if (not self.canvas.find_overlapping(x1, y1, x2, y2) ==
+                                                        self.initial_overlap):
+            self.canvas.move(self.widget, 0, -movement_amount)
+
     def move_backward(self, event):
         self.canvas.move(self.widget, 0, -movement_amount)
+
+        #Determine the new hero coordinates
+        x1, y1, x2, y2 = self.canvas.coords(self.widget)
+
+        #Undo the movement if it causes overlap
+        if (not self.canvas.find_overlapping(x1, y1, x2, y2) ==
+                                                        self.initial_overlap):
+            self.canvas.move(self.widget, 0, movement_amount)

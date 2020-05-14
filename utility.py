@@ -14,4 +14,4 @@ global character_size
 character_size = 15
 
 global movement_amount
-movement_amount = 10
+movement_amount = 15

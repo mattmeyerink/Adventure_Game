@@ -20,9 +20,17 @@ class Game:
         self.current_location = "Great Hall"
         self.screen = self.locations["Great Hall"].canvas
         self.hero = Hero(self.screen)
+        self.message_canvas = Canvas(self.root, width=window_width, height=frame_height - window_height, bg="white")
+        self.message = "Welcome to the Hogwarts! I think you will have a great time. Much magic awaits you \nin these hallowed halls!"
+        self.inventory = {}
 
     def place_screen(self):
         self.screen.place(anchor=NW)
+        self.message_canvas.place(x=0, y=frame_height*0.855)
+
+    def place_message(self):
+        self.message_canvas.create_text(window_width/2, (frame_height-window_height)/2,
+                                        text=self.message, font=("Cochin", 20))
 
 #Function to run a game using the game class
 def start_game(root):
@@ -35,6 +43,9 @@ def start_game(root):
 
     #Print the starting room
     game.place_screen()
+
+    #Print the message
+    game.place_message()
 
     #Set up the movement keys
     root.bind("d", game.hero.move_right)

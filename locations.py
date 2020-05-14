@@ -8,12 +8,9 @@ from utility import *
 
 class Location:
 
-    def __init__(self, canvas, exit):
+    def __init__(self, canvas):
 
         self.canvas = canvas
-
-        #Adding the exit points to the locations 
-        self.exit = exit
 
 
 # Function that will add all of the pre-made location objects to the game class.
@@ -24,7 +21,7 @@ def add_locations(root):
     locations_dict = {}
 
     #Initialize the Great Hall
-    great_hall_exit = (window_height - character_size)
+
     great_hall = Location(Canvas(root, width=window_width,
                                             height=window_height, bg="wheat2"))
 
@@ -33,6 +30,16 @@ def add_locations(root):
     great_hall.canvas.create_rectangle(275, 250, 350, 500, fill="MistyRose4")
     great_hall.canvas.create_rectangle(450, 250, 525, 500, fill="MistyRose4")
     great_hall.canvas.create_rectangle(625, 250, 700, 500, fill="MistyRose4")
+
+    #Making the walls
+    right_wall = great_hall.canvas.create_rectangle(window_width, 0,
+                                window_width + 10, window_height, fill="white")
+    left_wall = great_hall.canvas.create_rectangle(-10, 0, 0, window_height,
+                                                                fill="white")
+    top_wall = great_hall.canvas.create_rectangle(0, -10,
+                                                window_width, 0, fill="white")
+    bottom_wall = great_hall.canvas.create_rectangle(0, window_height,
+                                    window_width, window_height, fill="white")
 
     #Add high table
     great_hall.canvas.create_rectangle(200, 50, 600, 125, fill="MistyRose4")
