@@ -20,13 +20,23 @@ class Game:
         self.current_location = "Great Hall"
         self.screen = self.locations["Great Hall"].canvas
         self.hero = Hero(self.screen)
+
         self.message_canvas = Canvas(self.root, width=window_width, height=frame_height - window_height, bg="white")
         self.message = "Welcome to the Hogwarts! I think you will have a great time. Much magic awaits you \nin these hallowed halls!"
+        self.inventory_canvas = Canvas(self.root, width=frame_width-window_width, height=frame_height, highlightcolor="black", bg="white")
         self.inventory = {}
 
     def place_screen(self):
         self.screen.place(anchor=NW)
         self.message_canvas.place(x=0, y=frame_height*0.855)
+
+        inventory_title = self.inventory_canvas.create_text(
+            (frame_width - window_width)/2, frame_height/16, text="Inventory",
+            font=("Cochin", 20))
+        inventory_line = self.inventory_canvas.create_line(0,
+            frame_height/8, frame_width - window_width, frame_height/8,
+            dash=(5, ), fill="black")
+        self.inventory_canvas.place(x=window_width, y=0)
 
     def place_message(self):
         self.message_canvas.create_text(window_width/2, (frame_height-window_height)/2,
