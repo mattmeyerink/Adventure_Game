@@ -62,7 +62,7 @@ class Game:
             font=("Cochin", 20))
 
     #Function to add an item to the inventory
-    def pick_up_item(self, event, item):
+    def pick_up_item(self, item):
         self.inventory.append(item)
         self.message_canvas.delete('all')
         self.message = "Item added to inventory"
@@ -117,7 +117,7 @@ class Game:
                 #Ensure the y/n keys are unbound before using them
                 self.root.unbind_all("y")
                 self.root.unbind_all("n")
-                self.root.bind("y", lambda args=self.items[i]: self.pick_up_item(args))
+                self.root.bind("y", lambda event, arg1=self.items[i]: self.pick_up_item(arg1))
                 self.root.bind("n", self.item_not_picked_up)
 
             else:
