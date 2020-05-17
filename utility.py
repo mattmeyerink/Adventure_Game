@@ -18,3 +18,6 @@ movement_amount = 15
 
 global item_size
 item_size = 8
+
+global item_prompt
+item_prompt = "Would you like to pick up this item (y/n)?"

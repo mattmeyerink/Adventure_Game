@@ -31,7 +31,11 @@ class Game:
             " time. Much magic awaits you \nin these hallowed halls!")
         self.inventory_canvas = Canvas(self.root, width=frame_width-window_width,
             height=frame_height, highlightcolor="black", bg="white")
-        self.inventory = {}
+        self.inventory = []
+        self.inventory_names = ""
+        self.inventory_names_text = self.inventory_canvas.create_text(
+            (frame_width - window_width)/2, frame_height/2,
+            text= self.inventory_names, font=("Cochin", 14))
 
     #Function to place the screen including the location, inventory, message
     def place_screen(self):
@@ -57,23 +61,69 @@ class Game:
             (frame_height-window_height)/2, text=self.message,
             font=("Cochin", 20))
 
+    #Function to add an item to the inventory
+    def pick_up_item(self, event, item):
+        self.inventory.append(item)
+        self.message_canvas.delete('all')
+        self.message = "Item added to inventory"
+        self.place_message()
+
+        self.inventory_names += "\n\n" + item.name
+        self.inventory_canvas.itemconfig(self.inventory_names_text,
+            text=self.inventory_names)
+
+
+    #Print message item not added to inventory
+    def item_not_picked_up(self, event):
+        self.message_canvas.delete('all')
+        self.message = "Item not added to inventory"
+        self.place_message()
+
+
     # Handle the user interacting with an item
     # Print the item description, the option to pick it up, and add to inventory
     # if yes
-    def item_interaction(self):
+    def item_interaction(self, event):
 
         for i in self.items:
 
-            #Check if item is within the range of the hero
-            x_range = (((hero.x_position - character_size) >= self.items[i]) or
-                ((hero.x_position + character_size) <= self.items[i]))
-            y_range = (((hero.y_position - character_size) >= self.items[i]) or
-                ((hero.y_position + character_size) <= self.items[i]))
+            #Check if item is within the x_range
+            x_lower_bound = self.hero.x_position > (self.items[i].x_position -
+                (3 * character_size))
+            x_upper_bound = self.hero.x_position < (self.items[i].x_position +
+                (3 * character_size))
+            x_range = x_lower_bound and x_upper_bound
+
+            #Check if the item is within the y_range
+            y_lower_bound = self.hero.y_position > (self.items[i].y_position -
+                                                        (3 * character_size))
+            y_upper_bound = self.hero.y_position < (self.items[i].y_position +
+                                                        (3 * character_size))
+            y_range = y_lower_bound and y_upper_bound
+
+            #Check if the item is within range
             within_range = x_range and y_range
 
             #Branch if the person is within the range
-            if (within_range and self.item[i] == self.current_location):
+            if (within_range and self.items[i].location
+                                                    == self.current_location):
 
+                #Reset the game message, clear the canvas, and put the message
+                #On the canvas
+                self.message_canvas.delete('all')
+                self.message = self.items[i].description + item_prompt
+                self.place_message()
+
+                #Ensure the y/n keys are unbound before using them
+                self.root.unbind_all("y")
+                self.root.unbind_all("n")
+                self.root.bind("y", lambda args=self.items[i]: self.pick_up_item(args))
+                self.root.bind("n", self.item_not_picked_up)
+
+            else:
+                self.message_canvas.delete('all')
+                self.message = "Nothing to interact with here. Keep looking!\n"
+                self.place_message()
 
 
 #Function to run a game using the game class
@@ -97,3 +147,4 @@ def start_game(root):
     root.bind("a", game.hero.move_left)
     root.bind("s", game.hero.move_forward)
     root.bind("w", game.hero.move_backward)
+    root.bind("i", game.item_interaction)

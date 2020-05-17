@@ -25,8 +25,9 @@ def add_items():
     items_list = {}
 
     #Initialize Hogwarts a History object
+
     hogwarts_a_history = Item("Hogwarts a History", "Fantastic book detailing "
-        + "the history of Hogwarts School of Witchcraft and Wizardry",
+        + "the history of Hogwarts School of Witchcraft and Wizardry\n",
         "Great Hall", "blue", window_width/25, window_height/2)
 
     #Add Hogwarts a History to items list

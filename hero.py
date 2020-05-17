@@ -34,6 +34,11 @@ class Hero:
         if (not self.canvas.find_overlapping(x1, y1, x2, y2) ==
                                                         self.initial_overlap):
             self.canvas.move(self.widget, -movement_amount, 0)
+            x1, y1, x2, y2 = self.canvas.coords(self.widget)
+
+        #Update the position of the character
+        self.x_position = x1 + character_size
+        self.y_position = y1 + character_size
 
     def move_left(self, event):
         self.canvas.move(self.widget, -movement_amount, 0)
@@ -45,6 +50,11 @@ class Hero:
         if (not self.canvas.find_overlapping(x1, y1, x2, y2) ==
                                                         self.initial_overlap):
             self.canvas.move(self.widget, movement_amount, 0)
+            x1, y1, x2, y2 = self.canvas.coords(self.widget)
+
+        #Update the position of the character
+        self.x_position = x1 + character_size
+        self.y_position = y1 + character_size
 
     def move_forward(self, event):
         self.canvas.move(self.widget, 0, movement_amount)
@@ -56,6 +66,11 @@ class Hero:
         if (not self.canvas.find_overlapping(x1, y1, x2, y2) ==
                                                         self.initial_overlap):
             self.canvas.move(self.widget, 0, -movement_amount)
+            x1, y1, x2, y2 = self.canvas.coords(self.widget)
+
+        #Update the position of the character
+        self.x_position = x1 + character_size
+        self.y_position = y1 + character_size
 
     def move_backward(self, event):
         self.canvas.move(self.widget, 0, -movement_amount)
@@ -67,3 +82,8 @@ class Hero:
         if (not self.canvas.find_overlapping(x1, y1, x2, y2) ==
                                                         self.initial_overlap):
             self.canvas.move(self.widget, 0, movement_amount)
+            x1, y1, x2, y2 = self.canvas.coords(self.widget)
+
+        #Update the position of the character
+        self.x_position = x1 + character_size
+        self.y_position = y1 + character_size
