@@ -15,3 +15,6 @@ character_size = 15
 
 global movement_amount
 movement_amount = 15
+
+global item_size
+item_size = 8

@@ -22,7 +22,7 @@ class Enemy:
 # Will create a list of enemy objects
 def add_enemies():
 
-    #Initialize dictionary of enemies
+    #Initialize list of enemies
     enemies_list = {}
 
     #Initialize Lord Voldemort
@@ -32,7 +32,7 @@ def add_enemies():
     #Add Lord Voldemort to list
     enemies_list[0] = lord_voldy
 
-    #Return dicitonary of enemies
+    #Return list of enemies
     return enemies_list
 
 # prints the enemies located in the current location to the screen
