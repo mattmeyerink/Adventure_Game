@@ -27,16 +27,41 @@ class Window:
             justify=CENTER, padx=10, pady=10, command=self.root.destroy)
         self.quit_button.place(rely=0.60, relx=0.5, anchor=CENTER)
 
-    #Start the window loop
+    ##########################################################################
+    ##########################################################################
+    ##########################################################################
+
+
+    # Start the window loop
     def start(self):
         self.root.mainloop()
 
-    #Function to start the game
+    # Prints a pop up window that contains the game instructions
+    def print_instructions(self):
+
+        window = Tk()
+        window.title("Instructions")
+        window.geometry("500x300")
+
+        main_title = Label(window, text="Instructions", font=("Cochin", 20, "bold"),
+            anchor=CENTER)
+        main_title.place(relx=0.5, rely=0.25)
+
+        window.mainloop()
+
+    # Function to start the game
     def run_game(self):
 
         #Get rid of all buttons on the screen
         self.main_title.destroy()
         self.game_button.destroy()
         self.quit_button.destroy()
+
         #Run the game function using created game instance
         start_game(self.root)
+
+        #Initialize and place the instructions button
+        self.insturctions_button = Button(self.root, text="Instructions",
+            font=("Cochin", 14, "bold"), justify=CENTER, padx=10, pady=10,
+            command=self.print_instructions)
+        self.insturctions_button.place(relx=0, rely=0, anchor=NW)

@@ -16,6 +16,7 @@ class Item:
         self.color = color
         self.x_position = x_position
         self.y_position = y_position
+        self.picked_up = False
 
 # Function that will add all of the pre-made items to the game class. Will
 # return a list of items objects.
@@ -40,7 +41,7 @@ def add_items():
 def print_items(current_location, screen, items):
 
     for i in items:
-        if items[i].location == current_location:
+        if (items[i].location == current_location) and (items[i].picked_up == False):
 
             x1 = items[i].x_position - item_size
             y1 = items[i].y_position - item_size
