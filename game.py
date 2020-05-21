@@ -44,8 +44,9 @@ class Game:
     #########################################################################
     #########################################################################
 
-    #Function to place the screen including the location, inventory, message
-    def place_screen(self):
+    #Function to place the initial screen including the location, inventory,
+    #message
+    def initial_place(self):
 
         #Place the main screen canvas
         self.screen.place(anchor=NW)
@@ -61,6 +62,10 @@ class Game:
             frame_height/8, frame_width - window_width, frame_height/8,
             dash=(5, ), fill="black")
         self.inventory_canvas.place(x=window_width, y=0)
+
+
+    def place_screen(self):
+        self.screen.place(anchor=NW)
 
     #function to update the message
     def place_message(self):
@@ -146,7 +151,40 @@ class Game:
     #########################################################################
     #########################################################################
 
-    
+    #Change the screen when the character exits a room
+    def change_locations(self, event):
+
+        # Bottom door range
+        x_door_bottom_boundary = (self.hero.x_position > left_door_boundary and
+                                    self.hero.x_position < right_door_boundary)
+        y_door_bottom_boundary = self.hero.y_position >  window_height
+        bottom_door = x_door_bottom_boundary and y_door_bottom_boundary
+
+        if (bottom_door):
+            self.screen = self.locations[
+                self.locations[self.current_location].bottom_room].canvas
+            self.current_location = self.locations[
+                self.current_location].bottom_room
+            self.place_screen()
+
+            self.hero = Hero(self.screen)
+            print_enemies(self.current_location, self.screen, self.enemies)
+            print_items(self.current_location, self.screen, self.items)
+
+            #Set up the movement keys
+            self.root.bind("d", self.hero.move_right)
+            self.root.bind("a", self.hero.move_left)
+            self.root.bind("s", self.hero.move_forward)
+            self.root.bind("w", self.hero.move_backward)
+
+            #Set up interaction and exit buttons
+            self.root.bind("i", self.item_interaction)
+            self.root.bind("e", self.change_locations)
+
+    #########################################################################
+    #########################################################################
+    #########################################################################
+
 #Function to run a game using the game class
 def start_game(root):
 
@@ -158,7 +196,7 @@ def start_game(root):
     print_items(game.current_location, game.screen, game.items)
 
     #Print the starting room
-    game.place_screen()
+    game.initial_place()
 
     #Print the message
     game.place_message()
@@ -168,4 +206,7 @@ def start_game(root):
     root.bind("a", game.hero.move_left)
     root.bind("s", game.hero.move_forward)
     root.bind("w", game.hero.move_backward)
+
+    #Set up interaction and exit buttons
     root.bind("i", game.item_interaction)
+    root.bind("e", game.change_locations)

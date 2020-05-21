@@ -45,7 +45,13 @@ class Window:
 
         main_title = Label(window, text="Instructions", font=("Cochin", 20, "bold"),
             anchor=CENTER)
-        main_title.place(relx=0.5, rely=0.25)
+        main_title.place(rely=0.1, relx=0.38)
+
+        list = Label(window, text="View your current item inventory on the right" +
+            " and any important messages\non the bottom\n\nControls\nw = move forward\n" +
+            "s = move backward\na = move left\nd = right\ni = interact\ne = exit room",
+            font=("Cochin", 14))
+        list.place(rely=0.3)
 
         window.mainloop()
 

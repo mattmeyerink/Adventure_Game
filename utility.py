@@ -21,3 +21,9 @@ item_size = 8
 
 global item_prompt
 item_prompt = "Would you like to pick up this item (y/n)?"
+
+global left_door_boundary
+left_door_boundary = window_width/2 - 50
+
+global right_door_boundary
+right_door_boundary = window_width/2 + 50
