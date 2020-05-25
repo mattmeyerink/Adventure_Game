@@ -27,3 +27,9 @@ left_door_boundary = window_width/2 - 50
 
 global right_door_boundary
 right_door_boundary = window_width/2 + 50
+
+global upper_door_boundary
+upper_door_boundary = window_height/2 - 50
+
+global lower_door_boundary
+lower_door_boundary = window_height/2 + 50
