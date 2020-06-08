@@ -49,7 +49,8 @@ class Window:
 
         list = Label(window, text="View your current item inventory on the right" +
             " and any important messages\non the bottom\n\nControls\nw = move forward\n" +
-            "s = move backward\na = move left\nd = right\ni = interact\ne = exit room",
+            "s = move backward\na = move left\nd = right\ni = interact\ne = exit room\n" +
+            "f = fight enemy",
             font=("Cochin", 14))
         list.place(rely=0.3)
 
