@@ -174,17 +174,24 @@ class Game:
     #Change the screen when the character exits a room
     def change_locations(self, event):
 
-        # Bottom door range
+        # Bottom door Range
         x_door_bottom_boundary = (self.hero.x_position > left_door_boundary and
                                     self.hero.x_position < right_door_boundary)
         y_door_bottom_boundary = self.hero.y_position >  window_height
         bottom_door = x_door_bottom_boundary and y_door_bottom_boundary
 
-        # Top door range
+        # Top door Range
         x_door_top_boundary = (self.hero.x_position > left_door_boundary and
                                     self.hero.x_position < right_door_boundary)
         y_door_top_boundary = self.hero.y_position < 0
         top_door = x_door_top_boundary and y_door_top_boundary
+
+        # Left Door Range
+        x_door_left_boundary = self.hero.x_position < 0
+        y_door_left boundary = (self.hero.y_position < upper_door_boundary and
+            self.hero.y_position > lower_door_boundary)
+        left_door = x_door_left_boundary and y_door_left_boundary
+
 
         if (bottom_door):
 

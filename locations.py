@@ -8,12 +8,15 @@ from utility import *
 
 class Location:
 
-    def __init__(self, canvas, room_description, top_room, bottom_room):
+    def __init__(self, canvas, room_description, top_room, bottom_room,
+        left_room, right_room):
 
         self.canvas = canvas
         self.room_description = room_description
         self.top_room = top_room
         self.bottom_room = bottom_room
+        self.left_room = left_room
+        self.right_room = right_room
 
 
 
@@ -32,10 +35,13 @@ def add_locations(root):
 
     great_hall_top_room = "None"
     great_hall_bottom_room = "Main Entrance"
+    great_hall_left_room = "None"
+    great_hall_right_room = "None"
 
     great_hall = Location(Canvas(root, width=window_width,
         height=window_height, bg="wheat2"), great_hall_description,
-        great_hall_top_room, great_hall_bottom_room)
+        great_hall_top_room, great_hall_bottom_room, great_hall_left_room,
+        great_hall_right_room)
 
     #Add house tables
     great_hall.canvas.create_rectangle(100, 250, 175 , 500, fill="MistyRose4")
@@ -69,10 +75,13 @@ def add_locations(root):
 
     main_entrance_top_room = "Great Hall"
     main_entrance_bottom_room = "None"
+    main_entrance_right_room = "None"
+    main_entrance_left_room = "Room of Requirement"
 
     main_entrance = Location(Canvas(root, width=window_width,
         height=window_height, bg="wheat2"), main_entrance_description,
-        main_entrance_top_room, main_entrance_bottom_room)
+        main_entrance_top_room, main_entrance_bottom_room,
+        main_entrance_left_room, main_entrance_right_room)
 
     main_entrance.canvas.create_rectangle(0, upper_door_boundary, 30,
         lower_door_boundary, fill="wheat1")
@@ -91,6 +100,21 @@ def add_locations(root):
 
     locations_dict["Main Entrance"] = main_entrance
 
+    #Initialize the Room of Requirement
+    room_requirement_description = "You have now entered the Room of Requirement!"
+
+    room_requirement_top_room = "None"
+    room_requirement_left_room = "None"
+    room_requirement_right_room = "Main Entrance"
+    room_requirement_bottom_room = "None"
+
+    room_requirement = Location(Canvas(root, width=window_width,
+        height=window_height, bg="burlywood4"), room_requirement_description,
+        room_requirement_top_room, room_requirement_bottom_room,
+        room_requirement_left_room, room_requirement_right_room)
+
+    locations_dict["Room of Requirement"] = room_requirement
+    
     #Return the completed dictionary of locations
     return locations_dict
 
