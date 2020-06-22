@@ -188,10 +188,15 @@ class Game:
 
         # Left Door Range
         x_door_left_boundary = self.hero.x_position < 0
-        y_door_left boundary = (self.hero.y_position < upper_door_boundary and
-            self.hero.y_position > lower_door_boundary)
+        y_door_left_boundary = (self.hero.y_position > upper_door_boundary and
+                                    self.hero.y_position < lower_door_boundary)
         left_door = x_door_left_boundary and y_door_left_boundary
 
+        # Right Door Range
+        x_door_right_boundary = self.hero.x_position > window_width
+        y_door_right_boundary = (self.hero.y_position > upper_door_boundary and
+                                    self.hero.y_position < lower_door_boundary)
+        right_door = x_door_right_boundary and y_door_right_boundary
 
         if (bottom_door):
 
@@ -228,7 +233,7 @@ class Game:
             self.root.bind("e", self.change_locations)
 
             #Set up attack button
-            self.root.bind("f", game.attack_enemy)
+            self.root.bind("f", self.attack_enemy)
 
         elif (top_door):
 
@@ -265,7 +270,82 @@ class Game:
             self.root.bind("e", self.change_locations)
 
             #Set up attack button
-            self.root.bind("f", game.attack_enemy)
+            self.root.bind("f", self.attack_enemy)
+
+        elif (left_door):
+
+             # Reinitialize locations
+            self.locations = add_locations(self.root)
+
+             # Reset the screen and place the screen
+            self.screen = self.locations[
+                 self.locations[self.current_location].left_room].canvas
+            self.place_screen()
+
+             # Reset the current location
+            self.current_location = self.locations[
+                                                 self.current_location].left_room
+
+             # Reprint the hero, items, enemies on the new screen
+            self.hero = Hero(self.screen)
+            print_enemies(self.current_location, self.screen, self.enemies)
+            print_items(self.current_location, self.screen, self.items)
+
+             # Update the message
+            self.message_canvas.delete('all')
+            self.message = self.locations[self.current_location].room_description
+            self.place_message()
+
+             #Set up the movement keys
+            self.root.bind("d", self.hero.move_right)
+            self.root.bind("a", self.hero.move_left)
+            self.root.bind("s", self.hero.move_forward)
+            self.root.bind("w", self.hero.move_backward)
+
+             #Set up interaction and exit buttons
+            self.root.bind("i", self.item_interaction)
+            self.root.bind("e", self.change_locations)
+
+             #Set up attack button
+            self.root.bind("f", self.attack_enemy)
+
+        elif (right_door):
+
+             # Reinitialize locations
+            self.locations = add_locations(self.root)
+
+             # Reset the screen and place the screen
+            self.screen = self.locations[
+                 self.locations[self.current_location].right_room].canvas
+            self.place_screen()
+
+             # Reset the current location
+            self.current_location = self.locations[
+                                                 self.current_location].right_room
+
+             # Reprint the hero, items, enemies on the new screen
+            self.hero = Hero(self.screen)
+            print_enemies(self.current_location, self.screen, self.enemies)
+            print_items(self.current_location, self.screen, self.items)
+
+             # Update the message
+            self.message_canvas.delete('all')
+            self.message = self.locations[self.current_location].room_description
+            self.place_message()
+
+             #Set up the movement keys
+            self.root.bind("d", self.hero.move_right)
+            self.root.bind("a", self.hero.move_left)
+            self.root.bind("s", self.hero.move_forward)
+            self.root.bind("w", self.hero.move_backward)
+
+             #Set up interaction and exit buttons
+            self.root.bind("i", self.item_interaction)
+            self.root.bind("e", self.change_locations)
+
+             #Set up attack button
+            self.root.bind("f", self.attack_enemy)
+
 
     #########################################################################
     #########################################################################
