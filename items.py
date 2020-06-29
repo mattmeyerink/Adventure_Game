@@ -18,24 +18,37 @@ class Item:
         self.y_position = y_position
         self.picked_up = False
 
+    #########################################################################
+    #########################################################################
+    #########################################################################
+
 # Function that will add all of the pre-made items to the game class. Will
 # return a list of items objects.
 def add_items():
 
-    #Initialize list of items
-    items_list = {}
-
     #Initialize Hogwarts a History object
-
     hogwarts_a_history = Item("Hogwarts a History", "Fantastic book detailing "
         + "the history of Hogwarts School of Witchcraft and Wizardry\n",
         "Great Hall", "blue", window_width/25, window_height/2)
 
-    #Add Hogwarts a History to items list
-    items_list[0] = hogwarts_a_history
+    #Initialize the Sword of Gryffindor
+    sword_of_gryffindor = Item("Sword of Gryffindor", "Powerful sword embedded with "
+        + "basalisk venom. Presents itself to any worthy Gryffindor\n",
+        "Gryffindor Common Room", "red", window_width/25, window_height/2)
+
+    #Initialize Basalisk Fang
+    basalisk_fang = Item("Basalisk Fang", "Basalisk fang containing highly toxic "
+        + "basalisk venom. Can be used to destroy horcruxes\n",
+        "Dungeons", "white", window_width/25, window_height/2)
+
+    items_list = {0=hogwarts_a_history, 1=basalisk_fang, 2=sword_of_gryffindor}
 
     #Returns list of items
     return items_list
+
+#########################################################################
+#########################################################################
+#########################################################################
 
 #Prints items located in current location
 def print_items(current_location, screen, items):

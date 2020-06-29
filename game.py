@@ -125,6 +125,11 @@ class Game:
     # if yes
     def item_interaction(self, event):
 
+        #DELETE ME
+        print(self.hero.x_position)
+        print(self.hero.y_position)
+
+
         for i in self.items:
 
             #Check if item is within the x_range
@@ -361,7 +366,7 @@ class Game:
             self.locations = add_locations(self.root)
             self.place_screen()
 
-            self.restart_screen()
+            #self.restart_screen()
 
             # Update the message
             self.message_canvas.delete('all')
