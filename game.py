@@ -125,8 +125,6 @@ class Game:
     # if yes
     def item_interaction(self, event):
 
-        #DELETE ME, FOR TESTING ONLY
-
         for i in range(len(self.items)):
 
             #Check if item is within the x_range
@@ -147,8 +145,8 @@ class Game:
             within_range = x_range and y_range
 
             #Branch if the person is within the range
-            if (within_range and self.items[i].location
-                                                    == self.current_location):
+            if (within_range and (self.items[i].location
+                                                    == self.current_location)):
 
                 #Reset the game message, clear the canvas, and put the message
                 #On the canvas
@@ -162,6 +160,8 @@ class Game:
                 self.root.bind("y", lambda event, arg1=self.items[i]:
                     self.pick_up_item(arg1))
                 self.root.bind("n", self.item_not_picked_up)
+
+                break
 
             else:
                 self.message_canvas.delete('all')
