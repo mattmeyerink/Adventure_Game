@@ -125,12 +125,9 @@ class Game:
     # if yes
     def item_interaction(self, event):
 
-        #DELETE ME
-        print(self.hero.x_position)
-        print(self.hero.y_position)
+        #DELETE ME, FOR TESTING ONLY
 
-
-        for i in self.items:
+        for i in range(len(self.items)):
 
             #Check if item is within the x_range
             x_lower_bound = self.hero.x_position > (self.items[i].x_position -

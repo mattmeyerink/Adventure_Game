@@ -26,22 +26,28 @@ class Item:
 # return a list of items objects.
 def add_items():
 
+    items_list = dict()
+
     #Initialize Hogwarts a History object
     hogwarts_a_history = Item("Hogwarts a History", "Fantastic book detailing "
         + "the history of Hogwarts School of Witchcraft and Wizardry\n",
         "Great Hall", "blue", window_width/25, window_height/2)
+
+    items_list[0] = hogwarts_a_history
 
     #Initialize the Sword of Gryffindor
     sword_of_gryffindor = Item("Sword of Gryffindor", "Powerful sword embedded with "
         + "basalisk venom. Presents itself to any worthy Gryffindor\n",
         "Gryffindor Common Room", "red", window_width/25, window_height/2)
 
+    items_list[1] = sword_of_gryffindor
+
     #Initialize Basalisk Fang
     basalisk_fang = Item("Basalisk Fang", "Basalisk fang containing highly toxic "
         + "basalisk venom. Can be used to destroy horcruxes\n",
         "Dungeons", "white", window_width/25, window_height/2)
 
-    items_list = {0=hogwarts_a_history, 1=basalisk_fang, 2=sword_of_gryffindor}
+    items_list[2] = basalisk_fang
 
     #Returns list of items
     return items_list
