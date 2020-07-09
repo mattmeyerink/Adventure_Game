@@ -19,7 +19,6 @@ class Location:
         self.right_room = right_room
 
 
-
 # Function that will add all of the pre-made location objects to the game class.
 # Will create a Dictionary of location objects
 def add_locations(root):
