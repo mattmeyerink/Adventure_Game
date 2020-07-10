@@ -356,14 +356,27 @@ class Game:
     #Function to carry out the enemy battle
     def enemy_battle(self, enemy):
 
-        if enemy.name = "Lord Voldemort":
+        if enemy.can_kill(self.inventory):
+
+            enemy.is_destroyed = True
+
+            # Reinitialize locations
+            self.locations = add_locations(self.root)
+            self.place_screen()
+
+            # Update the message
+            self.message_canvas.delete('all')
+            self.message = enemy.name + " has been defeated!"
+            self.place_message()
+
+        elif enemy.name == "Lord Voldemort":
 
             horcruxes_left = False
 
             for i in self.enemies:
                 if (self.enemies[i].is_destroyed == False and
                                 self.enemies[i].name != "Lord Voldemort"):
-                horcruxes_left = True
+                    horcruxes_left = True
 
             if horcruxes_left == False:
                 enemy.is_destroyed = True
@@ -376,19 +389,6 @@ class Game:
                 self.message_canvas.delete('all')
                 self.message = enemy.name + " has been defeated!"
                 self.place_message()
-
-        elif enemy.can_kill(self.inventory) or
-
-            enemy.is_destroyed = True
-
-            # Reinitialize locations
-            self.locations = add_locations(self.root)
-            self.place_screen()
-
-            # Update the message
-            self.message_canvas.delete('all')
-            self.message = enemy.name + " has been defeated!"
-            self.place_message()
 
         else:
 
