@@ -71,4 +71,4 @@ class Window:
         self.insturctions_button = Button(self.root, text="Instructions",
             font=("Cochin", 14, "bold"), justify=CENTER, padx=10, pady=10,
             command=self.print_instructions)
-        self.insturctions_button.place(relx=0, rely=0, anchor=NW)
+        self.insturctions_button.place(relx=0.895, rely=0.94, anchor=NW)

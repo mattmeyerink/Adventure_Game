@@ -36,7 +36,7 @@ def add_enemies():
     enemies_list = dict()
 
     #Initialize Lord Voldemort
-    lord_voldy_weapons = ["Hogwarts a History", "Wand"]
+    lord_voldy_weapons = ["None"]
     lord_voldy = Enemy("Lord Voldemort", "Great Hall", "black",
             window_width / 2, window_height / 3.5, lord_voldy_weapons)
 
@@ -79,7 +79,7 @@ def add_enemies():
     snake = Enemy("Nagini", "Hagrid's Hut", "orange4",
         window_width / 2, window_height / 3.5, horcrux_weapons)
 
-    enemies_list[6] = snake 
+    enemies_list[6] = snake
 
     #Return list of enemies
     return enemies_list
