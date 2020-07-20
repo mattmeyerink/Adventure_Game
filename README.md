@@ -44,6 +44,54 @@ functions before writing any code. This way I would know if I was accidentally
 creating a circular reference before I had any code to rewrite.
 
 Only once I had a backbone that would do everything that I needed the program
-to do would I fill in the class and function definitions. 
+to do would I fill in the class and function definitions.
 
 ## File Map
+
+#### utility.py
+
+Contains global variable definitions for use throughout the files.
+
+#### locations.py
+
+Contains the Location Class that defines a the elements of a specific room in
+the game. Also contains the following function definition.
+
+- add_locations(root): Initializes and returns all of the locations in the game
+in a dictionary that can be searched.
+
+#### items.py
+
+#### hero.py
+
+#### enemies.py
+
+Contains the Enemy Class Definition. The enemy class defines the traits of an
+enemy (in this case a horcrux) as well as contains the following function
+definition.
+
+- can_kill(hero_inventory): Checks the items possessed by the hero to see if
+they have the necessary item to kill the horcrux.
+
+The file also contains the following function definitions relevant to enemies.
+
+- add_enemies(): Creates the enemies for the game and returns them allowing
+them to be saved and accessed later by each instance of the game.
+- print_enemies(current_location, screen, enemies): Prints the enemies to the
+screen that are located in the room the hero is currently in.
+
+#### game.py
+
+#### Window.py
+
+Contains the Window Class Definition. This class defines the main window of the
+game. It contains the following functions.
+
+- start(): Starts the main loop of the Window
+- print_instructions(): Prints the instruction window
+- run_game(): Destroys the main tile menu and begins the game
+
+#### start.py
+
+Creates an instance of the window class and runs the start() function from the
+window class.
