@@ -97,7 +97,7 @@ them to be saved and accessed later by each instance of the game.
 - print_enemies(current_location, screen, enemies): Prints the enemies to the
 screen that are located in the room the hero is currently in.
 
-#### game.py
+#### game.py **bold text**
 
 Contains the definition for the Game Class. The game class pulls together all
 of the classes described above. Represents one iteration of the game. Contains
@@ -117,7 +117,7 @@ This file also contains the following function.
 
 start_game(): Begins the game by initializing an instance of the game class,
 initializing the game screen, and linking key game functions to their
-respective keys on the keyboard. 
+respective keys on the keyboard.
 
 #### Window.py
 
