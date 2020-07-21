@@ -48,7 +48,7 @@ to do would I fill in the class and function definitions.
 
 ## File Map
 
-#### utility.py
+### utility.py
 
 Contains global variable definitions for use throughout the files.
 
@@ -97,7 +97,7 @@ them to be saved and accessed later by each instance of the game.
 - print_enemies(current_location, screen, enemies): Prints the enemies to the
 screen that are located in the room the hero is currently in.
 
-#### game.py **bold text**
+#### game.py
 
 Contains the definition for the Game Class. The game class pulls together all
 of the classes described above. Represents one iteration of the game. Contains
