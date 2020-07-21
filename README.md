@@ -62,7 +62,24 @@ in a dictionary that can be searched.
 
 #### items.py
 
+Contains the Items Class definition. The items class defines the traits of an
+item (such as those with the ability to destroy a horcrux). The file also
+contains the following function definitions.
+
+- add_items(): Defines all of the items in the game and returns them in a
+dictionary that will be saved with the game.
+- print_items(): Prints the items to the screen that are located in the
+location that is currently on screen.
+
 #### hero.py
+
+Contains the Hero Class that sets up the hero character in the game. The hero
+class also contains the function definitions for moving within the game.
+
+- move_right(event)
+- move_left(event)
+- move_forward(event)
+- move_backward(event)
 
 #### enemies.py
 
@@ -81,6 +98,26 @@ them to be saved and accessed later by each instance of the game.
 screen that are located in the room the hero is currently in.
 
 #### game.py
+
+Contains the definition for the Game Class. The game class pulls together all
+of the classes described above. Represents one iteration of the game. Contains
+many class methods that I broke up into several key categories.
+
+- Screen Handling: Functions to initialize and alter the game screen, inventory
+screen, and the message screen.
+- Item Handling: Function to handle when the user wants to interact with an
+item including picking up/not picking up and item and adding that item to
+inventory.
+- Changing Locations: A Function to allow the user to use doors to move through
+different locations on the map.
+- Battling an Enemy: Functions to allow the user to interact, battle, and run
+away from enemies.
+
+This file also contains the following function.
+
+start_game(): Begins the game by initializing an instance of the game class,
+initializing the game screen, and linking key game functions to their
+respective keys on the keyboard. 
 
 #### Window.py
 
