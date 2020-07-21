@@ -52,83 +52,83 @@ to do would I fill in the class and function definitions.
 
 Contains global variable definitions for use throughout the files.
 
-#### locations.py
+### locations.py
 
 Contains the Location Class that defines a the elements of a specific room in
 the game. Also contains the following function definition.
 
-- add_locations(root): Initializes and returns all of the locations in the game
+- **add_locations(root)**: Initializes and returns all of the locations in the game
 in a dictionary that can be searched.
 
-#### items.py
+### items.py
 
 Contains the Items Class definition. The items class defines the traits of an
 item (such as those with the ability to destroy a horcrux). The file also
 contains the following function definitions.
 
-- add_items(): Defines all of the items in the game and returns them in a
+- **add_items()**: Defines all of the items in the game and returns them in a
 dictionary that will be saved with the game.
-- print_items(): Prints the items to the screen that are located in the
+- **print_items()**: Prints the items to the screen that are located in the
 location that is currently on screen.
 
-#### hero.py
+### hero.py
 
 Contains the Hero Class that sets up the hero character in the game. The hero
 class also contains the function definitions for moving within the game.
 
-- move_right(event)
-- move_left(event)
-- move_forward(event)
-- move_backward(event)
+- **move_right(event)**
+- **move_left(event)**
+- **move_forward(event)**
+- **move_backward(event)**
 
-#### enemies.py
+### enemies.py
 
 Contains the Enemy Class Definition. The enemy class defines the traits of an
 enemy (in this case a horcrux) as well as contains the following function
 definition.
 
-- can_kill(hero_inventory): Checks the items possessed by the hero to see if
+- **can_kill(hero_inventory)**: Checks the items possessed by the hero to see if
 they have the necessary item to kill the horcrux.
 
 The file also contains the following function definitions relevant to enemies.
 
-- add_enemies(): Creates the enemies for the game and returns them allowing
+- **add_enemies()**: Creates the enemies for the game and returns them allowing
 them to be saved and accessed later by each instance of the game.
-- print_enemies(current_location, screen, enemies): Prints the enemies to the
+- **print_enemies(current_location, screen, enemies)**: Prints the enemies to the
 screen that are located in the room the hero is currently in.
 
-#### game.py
+### game.py
 
 Contains the definition for the Game Class. The game class pulls together all
 of the classes described above. Represents one iteration of the game. Contains
 many class methods that I broke up into several key categories.
 
-- Screen Handling: Functions to initialize and alter the game screen, inventory
+- **Screen Handling**: Functions to initialize and alter the game screen, inventory
 screen, and the message screen.
-- Item Handling: Function to handle when the user wants to interact with an
+- **Item Handling**: Function to handle when the user wants to interact with an
 item including picking up/not picking up and item and adding that item to
 inventory.
-- Changing Locations: A Function to allow the user to use doors to move through
+- **Changing Locations**: A Function to allow the user to use doors to move through
 different locations on the map.
-- Battling an Enemy: Functions to allow the user to interact, battle, and run
+- **Battling an Enemy**: Functions to allow the user to interact, battle, and run
 away from enemies.
 
 This file also contains the following function.
 
-start_game(): Begins the game by initializing an instance of the game class,
-initializing the game screen, and linking key game functions to their
+- **start_game()**: Begins the game by initializing an instance of the game
+class, initializing the game screen, and linking key game functions to their
 respective keys on the keyboard.
 
-#### Window.py
+### Window.py
 
 Contains the Window Class Definition. This class defines the main window of the
 game. It contains the following functions.
 
-- start(): Starts the main loop of the Window
-- print_instructions(): Prints the instruction window
-- run_game(): Destroys the main tile menu and begins the game
+- **start()**: Starts the main loop of the Window
+- **print_instructions()**: Prints the instruction window
+- **run_game()**: Destroys the main tile menu and begins the game
 
-#### start.py
+### start.py
 
 Creates an instance of the window class and runs the start() function from the
 window class.
