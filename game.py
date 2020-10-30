@@ -16,8 +16,16 @@ class Game:
     game itself.
     """
     def __init__(self, root):
+        """
+        Initializes the game class. Contains reference to the root Tkinter
+        window, a dictionary of location objects, a dictionary of enemy
+        objects, the name of the current location, the current Tkinter
+        canvas, the hero object, and a dictionary of items. 
 
-        #Main class variables
+        Additionally the game tracks the inventory canvas as well 
+        as the messages canvas.
+        """
+        # Main class variables
         self.root = root
         self.locations = add_locations(self.root)
         self.enemies = add_enemies()
@@ -26,13 +34,13 @@ class Game:
         self.hero = Hero(self.screen)
         self.items = add_items()
 
-        #Define message for the game
+        # Define message for the game
         self.message_canvas = Canvas(self.root, width=window_width,
             height=frame_height - window_height, bg="white")
         self.message = ("Welcome to the Hogwarts! I think you will have a great" +
             " time. Much magic awaits you \nin these hallowed halls!")
 
-        #Define the inventory for the game
+        # Define the inventory for the game
         self.inventory_canvas = Canvas(self.root, width=frame_width-window_width,
             height=frame_height, highlightcolor="black", bg="white")
         self.inventory = []
@@ -41,15 +49,8 @@ class Game:
             (frame_width - window_width)/2, frame_height/2,
             text= self.inventory_names, font=("Cochin", 14))
 
-
-    #########################################################################
-    #########################################################################
-    #########################################################################
-
-    #Function to place the initial screen including the location, inventory,
-    #message
     def initial_place(self):
-
+        """Function to initialize the game screen."""
         #Place the main screen canvas
         self.screen.place(anchor=NW)
 
@@ -65,18 +66,18 @@ class Game:
             dash=(5, ), fill="black")
         self.inventory_canvas.place(x=window_width, y=0)
 
-
     def place_screen(self):
+        """Place the current canvas."""
         self.screen.place(anchor=NW)
 
-    #function to update the message
     def place_message(self):
+        """Update the message displayed on the message canvas."""
         self.message_canvas.create_text(window_width/2,
             (frame_height-window_height)/2, text=self.message,
             font=("Cochin", 20))
 
     def restart_screen(self):
-
+        """Rerenders the screen and re initialize the key bindings."""
         # Reprint the hero, items, enemies on the new screen
         self.hero = Hero(self.screen)
         print_enemies(self.current_location, self.screen, self.enemies)
@@ -95,32 +96,26 @@ class Game:
         #Set up attack button
         self.root.bind("f", self.attack_enemy)
 
-    #########################################################################
-    #########################################################################
-    #########################################################################
-
-    #Function to add an item to the inventory
     def pick_up_item(self, item):
-
+        """Allows hero to pick up item and add it to inventory."""
         item.picked_up = True
-        self.inventory.append(item.name)
+
+        # Update message
         self.message_canvas.delete('all')
         self.message = "Item added to inventory"
         self.place_message()
 
+        # Update inventory
+        self.inventory.append(item.name)
         self.inventory_names += "\n\n" + item.name
         self.inventory_canvas.itemconfig(self.inventory_names_text,
             text=self.inventory_names)
 
-    #Print message item not added to inventory
     def item_not_picked_up(self, event):
+        """Alert player item not added to inventory."""
         self.message_canvas.delete('all')
         self.message = "Item not added to inventory"
         self.place_message()
-
-    #########################################################################
-    #########################################################################
-    #########################################################################
 
     # Handle the user interacting with an item
     # Print the item description, the option to pick it up, and add to inventory
