@@ -51,13 +51,13 @@ class Game:
 
     def initial_place(self):
         """Function to initialize the game screen."""
-        #Place the main screen canvas
+        # Place the main screen canvas
         self.screen.place(anchor=NW)
 
-        #Place the message canvas
+        # Place the message canvas
         self.message_canvas.place(x=0, y=frame_height*0.855)
 
-        #Place the inventory title
+        # Place the inventory title
         inventory_title = self.inventory_canvas.create_text(
             (frame_width - window_width)/2, frame_height/16, text="Inventory",
             font=("Cochin", 20))
@@ -83,17 +83,17 @@ class Game:
         print_enemies(self.current_location, self.screen, self.enemies)
         print_items(self.current_location, self.screen, self.items)
 
-        #Set up the movement keys
+        # Set up the movement keys
         self.root.bind("d", self.hero.move_right)
         self.root.bind("a", self.hero.move_left)
         self.root.bind("s", self.hero.move_forward)
         self.root.bind("w", self.hero.move_backward)
 
-        #Set up interaction and exit buttons
+        # Set up interaction and exit buttons
         self.root.bind("i", self.item_interaction)
         self.root.bind("e", self.change_locations)
 
-        #Set up attack button
+        # Set up attack button
         self.root.bind("f", self.attack_enemy)
 
     def pick_up_item(self, item):
@@ -121,37 +121,41 @@ class Game:
     # Print the item description, the option to pick it up, and add to inventory
     # if yes
     def item_interaction(self, event):
-
+        """
+        Handle the user interacting with an item.
+        Prints the items description, and displays option to pick it 
+        up or not. Adds item to inventory if yes, prints failed message
+        if no.
+        """
+        # Check if any item in proximity of hero
         for i in range(len(self.items)):
-
-            #Check if item is within the x_range
+            # Check if item is within the x_range of hero
             x_lower_bound = self.hero.x_position > (self.items[i].x_position -
                 (3 * character_size))
             x_upper_bound = self.hero.x_position < (self.items[i].x_position +
                 (3 * character_size))
             x_range = x_lower_bound and x_upper_bound
 
-            #Check if the item is within the y_range
+            # Check if the item is within the y_range of hero
             y_lower_bound = self.hero.y_position > (self.items[i].y_position -
                                                         (3 * character_size))
             y_upper_bound = self.hero.y_position < (self.items[i].y_position +
                                                         (3 * character_size))
             y_range = y_lower_bound and y_upper_bound
 
-            #Check if the item is within range
+            # Check if the item is within range
             within_range = x_range and y_range
 
-            #Branch if the person is within the range
+            # Branch if the person is within the range and in same room
             if (within_range and (self.items[i].location
                                                     == self.current_location)):
 
-                #Reset the game message, clear the canvas, and put the message
-                #On the canvas
+                # Reset the game message with pickup prompt
                 self.message_canvas.delete('all')
                 self.message = self.items[i].description + item_prompt
                 self.place_message()
 
-                #Ensure the y/n keys are unbound before using them
+                # Ensure the y/n keys are unbound before using them
                 self.root.unbind_all("y")
                 self.root.unbind_all("n")
                 self.root.bind("y", lambda event, arg1=self.items[i]:
@@ -161,44 +165,41 @@ class Game:
                 break
 
             else:
+                # Push keep looking message
                 self.message_canvas.delete('all')
                 self.message = "Nothing to interact with here. Keep looking!\n"
                 self.place_message()
-
-
-    #########################################################################
-    #########################################################################
-    #########################################################################
-
-    #Change the screen when the character exits a room
+    
+    # TODO Refractor to combine chagne room functions to cleaner statement
+    # TODO Add function for initializing keys (used multiple times)
     def change_locations(self, event):
-
-        # Bottom door Range
+        """Update the screen when the hero changes rooms."""
+        # Set bottom door range
         x_door_bottom_boundary = (self.hero.x_position > left_door_boundary and
                                     self.hero.x_position < right_door_boundary)
         y_door_bottom_boundary = self.hero.y_position >  window_height
         bottom_door = x_door_bottom_boundary and y_door_bottom_boundary
 
-        # Top door Range
+        # Set top door range
         x_door_top_boundary = (self.hero.x_position > left_door_boundary and
                                     self.hero.x_position < right_door_boundary)
         y_door_top_boundary = self.hero.y_position < 0
         top_door = x_door_top_boundary and y_door_top_boundary
 
-        # Left Door Range
+        # Set left door range
         x_door_left_boundary = self.hero.x_position < 0
         y_door_left_boundary = (self.hero.y_position > upper_door_boundary and
                                     self.hero.y_position < lower_door_boundary)
         left_door = x_door_left_boundary and y_door_left_boundary
 
-        # Right Door Range
+        # Set right door range
         x_door_right_boundary = self.hero.x_position > window_width
         y_door_right_boundary = (self.hero.y_position > upper_door_boundary and
                                     self.hero.y_position < lower_door_boundary)
         right_door = x_door_right_boundary and y_door_right_boundary
 
+        # Exit the bottom door if bottom door true
         if (bottom_door):
-
             # Reinitialize locations
             self.locations = add_locations(self.root)
 
@@ -221,17 +222,17 @@ class Game:
             self.message = self.locations[self.current_location].room_description
             self.place_message()
 
-            #Set up the movement keys
+            # Set up the movement keys
             self.root.bind("d", self.hero.move_right)
             self.root.bind("a", self.hero.move_left)
             self.root.bind("s", self.hero.move_forward)
             self.root.bind("w", self.hero.move_backward)
 
-            #Set up interaction and exit buttons
+            # Set up interaction and exit buttons
             self.root.bind("i", self.item_interaction)
             self.root.bind("e", self.change_locations)
 
-            #Set up attack button
+            # Set up attack button
             self.root.bind("f", self.attack_enemy)
 
         elif (top_door):
@@ -258,17 +259,17 @@ class Game:
             self.message = self.locations[self.current_location].room_description
             self.place_message()
 
-            #Set up the movement keys
+            # Set up the movement keys
             self.root.bind("d", self.hero.move_right)
             self.root.bind("a", self.hero.move_left)
             self.root.bind("s", self.hero.move_forward)
             self.root.bind("w", self.hero.move_backward)
 
-            #Set up interaction and exit buttons
+            # Set up interaction and exit buttons
             self.root.bind("i", self.item_interaction)
             self.root.bind("e", self.change_locations)
 
-            #Set up attack button
+            # Set up attack button
             self.root.bind("f", self.attack_enemy)
 
         elif (left_door):
@@ -332,27 +333,22 @@ class Game:
             self.message = self.locations[self.current_location].room_description
             self.place_message()
 
-             #Set up the movement keys
+            # Set up the movement keys
             self.root.bind("d", self.hero.move_right)
             self.root.bind("a", self.hero.move_left)
             self.root.bind("s", self.hero.move_forward)
             self.root.bind("w", self.hero.move_backward)
 
-             #Set up interaction and exit buttons
+             # Set up interaction and exit buttons
             self.root.bind("i", self.item_interaction)
             self.root.bind("e", self.change_locations)
 
-             #Set up attack button
+             # Set up attack button
             self.root.bind("f", self.attack_enemy)
 
-
-    #########################################################################
-    #########################################################################
-    #########################################################################
-
-    #Function to carry out the enemy battle
     def enemy_battle(self, enemy):
-
+        """Function to battle enemy."""
+        # Destroy enemy if correct item in inventory
         if enemy.can_kill(self.inventory):
 
             enemy.is_destroyed = True
@@ -366,6 +362,7 @@ class Game:
             self.message = enemy.name + " has been defeated!"
             self.place_message()
 
+        # Special case to destroy Voldemort if all else destroyed
         elif enemy.name == "Lord Voldemort":
 
             horcruxes_left = False
@@ -387,49 +384,44 @@ class Game:
                 self.message = enemy.name + " has been defeated!"
                 self.place_message()
 
+        # Update message to say battle not won
         else:
-
             # Update the message
             self.message_canvas.delete('all')
             self.message = "You dont have what it takes to win this fight yet!"
             self.place_message()
 
-    #Function if the hero runs away from the enemy
     def ran_away(self):
-
-        # Update the message
+        """Updates message if hero runs from enemy."""
         self.message_canvas.delete('all')
         self.message = "Be better next time"
         self.place_message()
 
-    # Function to handle enemy interaction
     def attack_enemy(self, event):
-
+        """Sense/handle interaction with enemy."""
         for i in self.enemies:
-
-            #Check if item is within the x_range
+            # Check if item is within the x_range of hero
             x_lower_bound = self.hero.x_position > (self.enemies[i].x_position -
                 (3 * character_size))
             x_upper_bound = self.hero.x_position < (self.enemies[i].x_position +
                 (3 * character_size))
             x_range = x_lower_bound and x_upper_bound
 
-            #Check if the item is within the y_range
+            # Check if the item is within the y_range of hero
             y_lower_bound = self.hero.y_position > (self.enemies[i].y_position -
                                                         (3 * character_size))
             y_upper_bound = self.hero.y_position < (self.enemies[i].y_position +
                                                         (3 * character_size))
             y_range = y_lower_bound and y_upper_bound
 
-            #Check if the item is within range
+            # Check if the item is within range of hero
             within_range = x_range and y_range
 
-            #Branch if the person is within the range
+            # Branch if the person is within the range and in same room
             if (within_range and self.enemies[i].location
                                                     == self.current_location):
 
-                #Reset the game message, clear the canvas, and put the message
-                #On the canvas
+                # Reset the message to display duel/no duel option
                 self.message_canvas.delete('all')
                 self.message =  ("Would you like to duel " + self.enemies[i].name
                     + " (y/n)")
@@ -443,37 +435,41 @@ class Game:
                 self.root.bind("n", self.ran_away)
 
                 break
-
+            
+            # Update message if no enemy in range
             else:
                 self.message_canvas.delete('all')
                 self.message = "No enemy here. Keep looking!\n"
                 self.place_message()
 
-#Function to run a game using the game class
 def start_game(root):
+    """
+    Function to initilize and run an instance of the Adventure Game.
+    Takes the root as input to know where to output the game.
+    """
 
-    #Initialize an instance of the game
+    # Initialize an instance of the game
     game = Game(root)
 
-    #Add the enemies and items in the current location to the screen
+    # Add the enemies and items in the current location to the screen
     print_enemies(game.current_location, game.screen, game.enemies)
     print_items(game.current_location, game.screen, game.items)
 
     #Print the starting room
     game.initial_place()
 
-    #Print the message
+    # Print the message
     game.place_message()
 
-    #Set up the movement keys
+    # Set up the movement keys
     root.bind("d", game.hero.move_right)
     root.bind("a", game.hero.move_left)
     root.bind("s", game.hero.move_forward)
     root.bind("w", game.hero.move_backward)
 
-    #Set up interaction and exit buttons
+    # Set up interaction and exit buttons
     root.bind("i", game.item_interaction)
     root.bind("e", game.change_locations)
 
-    #Set up attack button
+    # Set up attack button
     root.bind("f", game.attack_enemy)
