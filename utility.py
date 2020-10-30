@@ -1,3 +1,4 @@
+"""Script containing global variables for use throughout app."""
 global window_width
 window_width = 800
 

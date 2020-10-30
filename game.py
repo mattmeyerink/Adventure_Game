@@ -1,10 +1,8 @@
-
-# Program written and maintained by Matthew Meyerink
-
-# File containing the setup for the game. Sets up the game class that calls
-# other classes as well as the start_game function that actually runs
-# the game
-
+"""
+File containing the Game class. The Game class is an intance of the
+Adventure game that maintains the characters, enemies, and items 
+and controls what is displayed to the App window.
+"""
 from tkinter import *
 from locations import *
 from enemies import *
@@ -12,7 +10,11 @@ from hero import *
 from items import *
 
 class Game:
-
+    """
+    This is a class to represent the game itself. The class contains methods
+    to manage items, characters, enemies in the game and the running of the
+    game itself.
+    """
     def __init__(self, root):
 
         #Main class variables
