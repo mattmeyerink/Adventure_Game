@@ -170,9 +170,7 @@ class Game:
                 self.message_canvas.delete('all')
                 self.message = "Nothing to interact with here. Keep looking!\n"
                 self.place_message()
-    
-    # TODO Refractor to combine chagne room functions to cleaner statement
-    # TODO Add function for initializing keys (used multiple times)
+
     def change_locations(self, event):
         """Update the screen when the hero changes rooms."""
         # Set bottom door range
@@ -223,18 +221,7 @@ class Game:
             self.message = self.locations[self.current_location].room_description
             self.place_message()
 
-            # Set up the movement keys
-            self.root.bind("d", self.hero.move_right)
-            self.root.bind("a", self.hero.move_left)
-            self.root.bind("s", self.hero.move_forward)
-            self.root.bind("w", self.hero.move_backward)
-
-            # Set up interaction and exit buttons
-            self.root.bind("i", self.item_interaction)
-            self.root.bind("e", self.change_locations)
-
-            # Set up attack button
-            self.root.bind("f", self.attack_enemy)
+            self.initialize_keys()
 
         elif (top_door):
 
@@ -260,18 +247,7 @@ class Game:
             self.message = self.locations[self.current_location].room_description
             self.place_message()
 
-            # Set up the movement keys
-            self.root.bind("d", self.hero.move_right)
-            self.root.bind("a", self.hero.move_left)
-            self.root.bind("s", self.hero.move_forward)
-            self.root.bind("w", self.hero.move_backward)
-
-            # Set up interaction and exit buttons
-            self.root.bind("i", self.item_interaction)
-            self.root.bind("e", self.change_locations)
-
-            # Set up attack button
-            self.root.bind("f", self.attack_enemy)
+            self.initialize_keys()
 
         elif (left_door):
 
@@ -297,18 +273,7 @@ class Game:
             self.message = self.locations[self.current_location].room_description
             self.place_message()
 
-             #Set up the movement keys
-            self.root.bind("d", self.hero.move_right)
-            self.root.bind("a", self.hero.move_left)
-            self.root.bind("s", self.hero.move_forward)
-            self.root.bind("w", self.hero.move_backward)
-
-             #Set up interaction and exit buttons
-            self.root.bind("i", self.item_interaction)
-            self.root.bind("e", self.change_locations)
-
-             #Set up attack button
-            self.root.bind("f", self.attack_enemy)
+            self.initialize_keys()
 
         elif (right_door):
 
@@ -334,18 +299,7 @@ class Game:
             self.message = self.locations[self.current_location].room_description
             self.place_message()
 
-            # Set up the movement keys
-            self.root.bind("d", self.hero.move_right)
-            self.root.bind("a", self.hero.move_left)
-            self.root.bind("s", self.hero.move_forward)
-            self.root.bind("w", self.hero.move_backward)
-
-             # Set up interaction and exit buttons
-            self.root.bind("i", self.item_interaction)
-            self.root.bind("e", self.change_locations)
-
-             # Set up attack button
-            self.root.bind("f", self.attack_enemy)
+            self.initialize_keys()
 
     def enemy_battle(self, enemy):
         """Function to battle enemy."""
@@ -449,12 +403,26 @@ class Game:
                 self.message = "No enemy here. Keep looking!\n"
                 self.place_message()
 
+    def initialize_keys(self):
+        """Initialize the movement/interaction keys."""
+        # Set up the movement keys
+        self.root.bind("d", self.hero.move_right)
+        self.root.bind("a", self.hero.move_left)
+        self.root.bind("s", self.hero.move_forward)
+        self.root.bind("w", self.hero.move_backward)
+
+            # Set up interaction and exit buttons
+        self.root.bind("i", self.item_interaction)
+        self.root.bind("e", self.change_locations)
+
+            # Set up attack button
+        self.root.bind("f", self.attack_enemy)
+
 def start_game(root):
     """
     Function to initilize and run an instance of the Adventure Game.
     Takes the root as input to know where to output the game.
     """
-
     # Initialize an instance of the game
     game = Game(root)
 
@@ -468,15 +436,5 @@ def start_game(root):
     # Print the message
     game.place_message()
 
-    # Set up the movement keys
-    root.bind("d", game.hero.move_right)
-    root.bind("a", game.hero.move_left)
-    root.bind("s", game.hero.move_forward)
-    root.bind("w", game.hero.move_backward)
-
-    # Set up interaction and exit buttons
-    root.bind("i", game.item_interaction)
-    root.bind("e", game.change_locations)
-
-    # Set up attack button
-    root.bind("f", game.attack_enemy)
+    # Initialize keys
+    game.initialize_keys()
