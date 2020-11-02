@@ -1,16 +1,19 @@
-
-# Program written and maintained by Matthew Meyerink
-
-# File containing class definition for locations
-
+"""
+Contains locations class/helper functions to define
+the locations of the game.
+"""
 from tkinter import *
 from utility import *
 
-class Location:
 
+class Location:
+    """Class to define the locations in the Adventure Game."""
     def __init__(self, canvas, room_description, top_room, bottom_room,
         left_room, right_room):
-
+        """
+        Initializes the basic features of a room. utilized in the add
+        locations function.
+        """
         self.canvas = canvas
         self.room_description = room_description
         self.top_room = top_room
@@ -18,18 +21,16 @@ class Location:
         self.left_room = left_room
         self.right_room = right_room
 
-
-# Function that will add all of the pre-made location objects to the game class.
-# Will create a Dictionary of location objects
 def add_locations(root):
+    """
+    Funciton to return locations in the game in a dictionary to
+    be utilized in the game class.
+    """
 
-    #Initialize dictionary of locaitons
+    # Initialize dictionary of locaitons
     locations_dict = {}
 
-    #########################################################################
-    #########################################################################
-
-    #Initialize the Great Hall
+    # Initialize the Great Hall
     great_hall_description = "You have entered the Great Hall!"
 
     great_hall_top_room = "None"
@@ -42,13 +43,13 @@ def add_locations(root):
         great_hall_top_room, great_hall_bottom_room, great_hall_left_room,
         great_hall_right_room)
 
-    #Add house tables
+    # Add house tables to the Great Hall
     great_hall.canvas.create_rectangle(100, 250, 175 , 500, fill="MistyRose4")
     great_hall.canvas.create_rectangle(275, 250, 350, 500, fill="MistyRose4")
     great_hall.canvas.create_rectangle(450, 250, 525, 500, fill="MistyRose4")
     great_hall.canvas.create_rectangle(625, 250, 700, 500, fill="MistyRose4")
 
-    #Making the walls
+    # Making the walls of the great hall
     right_wall = great_hall.canvas.create_rectangle(window_width, 0,
                                 window_width + 10, window_height, fill="white")
     left_wall = great_hall.canvas.create_rectangle(-10, 0, 0, window_height,
@@ -60,16 +61,13 @@ def add_locations(root):
     bottom_wall_right = great_hall.canvas.create_rectangle(right_door_boundary,
                     window_height, window_width, window_height, fill="white")
 
-    #Add high table
+    # Add high table to the great hall
     great_hall.canvas.create_rectangle(200, 50, 600, 125, fill="MistyRose4")
 
-    #Add great_hall to the list of locations
+    # Add great_hall to the dictionary of locations
     locations_dict["Great Hall"] = great_hall
 
-    #########################################################################
-    #########################################################################
-
-    #Initialize the main entrance
+    # Initialize the main entrance
     main_entrance_description = "You have now entered the Main Entrance!"
 
     main_entrance_top_room = "Great Hall"
@@ -82,7 +80,7 @@ def add_locations(root):
         main_entrance_top_room, main_entrance_bottom_room,
         main_entrance_left_room, main_entrance_right_room)
 
-    #Making the walls
+    # Making the walls of the main entrance
     right_wall_top = main_entrance.canvas.create_rectangle(window_width,0,window_width+10,
                                             upper_door_boundary, fill="white")
     right_wall_bottom =  main_entrance.canvas.create_rectangle(window_width,
@@ -100,16 +98,13 @@ def add_locations(root):
     bottom_wall_right = main_entrance.canvas.create_rectangle(right_door_boundary,
                     window_height, window_width, window_height, fill="white")
 
-    #Add main entrance to the list of locations
+    # Add main entrance to the dictionary of locations
     locations_dict["Main Entrance"] = main_entrance
 
-    #########################################################################
-    #########################################################################
-
-    #Initialize the Dungeons
+    # Initialize the Dungeons
     dungeons_description = "You have now entered the Dungeons!"
 
-    #Set adjacent rooms
+    # Set adjacent rooms
     dungeons_top_room = "None"
     dungeons_left_room = "None"
     dungeons_right_room = "Main Entrance"
@@ -119,7 +114,7 @@ def add_locations(root):
         bg="dark grey"), dungeons_description, dungeons_top_room,
         dungeons_bottom_room, dungeons_left_room, dungeons_right_room)
 
-    #Set the walls
+    # Set the walls
     left_wall = dungeons.canvas.create_rectangle(-10, 0, 0, window_height,
                                                                 fill="white")
     top_wall = dungeons.canvas.create_rectangle(0, -10,
@@ -131,16 +126,13 @@ def add_locations(root):
     right_wall_bottom =  dungeons.canvas.create_rectangle(window_width,
             lower_door_boundary,window_width+10,window_height, fill="white")
 
-    #Add dungeons to the list of locations
+    # Add dungeons to the list of locations
     locations_dict["Dungeons"] = dungeons
 
-    #########################################################################
-    #########################################################################
-
-    #Initialize Hagrid's Hut
+    # Initialize Hagrid's Hut
     hagrids_hut_description = "You are now at Hagrid's Hut!"
 
-    #Set adjacent rooms
+    # Set adjacent rooms
     hagrids_hut_top_room = "None"
     hagrids_hut_left_room = "Main Entrance"
     hagrids_hut_right_room = "None"
@@ -151,7 +143,7 @@ def add_locations(root):
         hagrids_hut_top_room, hagrids_hut_bottom_room, hagrids_hut_left_room,
         hagrids_hut_right_room)
 
-    #Making the walls
+    # Making the walls
     top_wall = hagrids_hut.canvas.create_rectangle(0, -10,
                                                 window_width, 0, fill="white")
     bottom_wall = hagrids_hut.canvas.create_rectangle(0, window_height,
@@ -163,16 +155,13 @@ def add_locations(root):
     left_wall_bottom =  hagrids_hut.canvas.create_rectangle(-10,lower_door_boundary,0,
                                             window_height, fill="white")
 
-    #Add Hagrids Hut to the list of locations
+    # Add Hagrids Hut to the dict of locations
     locations_dict["Hagrid's Hut"] = hagrids_hut
 
-    #########################################################################
-    #########################################################################
-
-    #Initialize upstairs corridor
+    # Initialize upstairs corridor
     upstairs_corridor_description = "You have now entered the Upstairs Corridor!"
 
-    #Set adjacent rooms
+    # Set adjacent rooms
     upstairs_corridor_top_room = "Main Entrance"
     upstairs_corridor_left_room = "Room of Requirement"
     upstairs_corridor_right_room = "Ravenclaw Common Room"
@@ -183,7 +172,7 @@ def add_locations(root):
         upstairs_corridor_top_room, upstairs_corridor_bottom_room,
         upstairs_corridor_left_room, upstairs_corridor_right_room)
 
-    #Making the walls
+    # Making the walls
     right_wall_top = upstairs_corridor.canvas.create_rectangle(window_width,0,window_width+10,
                                             upper_door_boundary, fill="white")
     right_wall_bottom =  upstairs_corridor.canvas.create_rectangle(window_width,
@@ -201,16 +190,13 @@ def add_locations(root):
     bottom_wall_right = upstairs_corridor.canvas.create_rectangle(right_door_boundary,
                     window_height, window_width, window_height, fill="white")
 
-    #Add upstairs corridor to locations list
+    # Add upstairs corridor to locations dictionary
     locations_dict["Upstairs Corridor"] = upstairs_corridor
 
-    #########################################################################
-    #########################################################################
-
-    #Initialize the Room of Requirement
+    # Initialize the Room of Requirement
     room_requirement_description = "You have now entered the Room of Requirement!"
 
-    #Set adjacent rooms
+    # Set adjacent rooms
     room_requirement_top_room = "None"
     room_requirement_left_room = "None"
     room_requirement_right_room = "Upstairs Corridor"
@@ -221,7 +207,7 @@ def add_locations(root):
         room_requirement_top_room, room_requirement_bottom_room,
         room_requirement_left_room, room_requirement_right_room)
 
-    #Making the walls
+    # Making the walls
     left_wall = room_requirement.canvas.create_rectangle(-10, 0, 0, window_height,
                                                                 fill="white")
     top_wall = room_requirement.canvas.create_rectangle(0, -10,
@@ -233,16 +219,13 @@ def add_locations(root):
     right_wall_bottom =  room_requirement.canvas.create_rectangle(window_width,
             lower_door_boundary,window_width+10,window_height, fill="white")
 
-    #Add room of requirement to the list of locations
+    # Add room of requirement to the dict of locations
     locations_dict["Room of Requirement"] = room_requirement
 
-    #########################################################################
-    #########################################################################
-
-    #Initialize Ravenclaw Common Room
+    # Initialize Ravenclaw Common Room
     ravenclaw_common_room_description = "You have now entered the Ravenclaw Common Room!"
 
-    #Set Adjacent rooms
+    # Set Adjacent rooms
     ravenclaw_top_room = "None"
     ravenclaw_left_room = "Upstairs Corridor"
     ravenclaw_right_room = "None"
@@ -253,7 +236,7 @@ def add_locations(root):
         ravenclaw_top_room, ravenclaw_bottom_room, ravenclaw_left_room,
         ravenclaw_right_room)
 
-    #Making the walls
+    # Making the walls
     top_wall = ravenclaw_common_room.canvas.create_rectangle(0, -10,
                                                 window_width, 0, fill="white")
     bottom_wall = ravenclaw_common_room.canvas.create_rectangle(0, window_height,
@@ -265,16 +248,13 @@ def add_locations(root):
     left_wall_bottom =  ravenclaw_common_room.canvas.create_rectangle(-10,lower_door_boundary,0,
                                             window_height, fill="white")
 
-    #Add ravenclaw common room to list of locations
+    # Add ravenclaw common room to dict of locations
     locations_dict["Ravenclaw Common Room"] = ravenclaw_common_room
 
-    #########################################################################
-    #########################################################################
-
-    #Initialize Gryffindor Common Room
+    # Initialize Gryffindor Common Room
     gryffindor_common_room_description = "You have now entered the Gryffindor Common Room!"
 
-    #Set Adjacent Rooms
+    # Set Adjacent Rooms
     gryffindor_top_room = "Upstairs Corridor"
     gryffindor_left_room = "None"
     gryffindor_right_room = "None"
@@ -285,7 +265,7 @@ def add_locations(root):
         gryffindor_top_room, gryffindor_bottom_room, gryffindor_left_room,
         gryffindor_right_room)
 
-    #Setting up the walls
+    # Setting up the walls
     bottom_wall = gryffindor_common_room.canvas.create_rectangle(0, window_height,
                                     window_width, window_height, fill="white")
     right_wall = gryffindor_common_room.canvas.create_rectangle(window_width, 0,
@@ -297,15 +277,8 @@ def add_locations(root):
     top_wall_right = gryffindor_common_room.canvas.create_rectangle(right_door_boundary,
                     0, window_width, 0, fill="white")
 
-    #Add Gryffindor Common Room to locations list
+    # Add Gryffindor Common Room to locations dict
     locations_dict["Gryffindor Common Room"] = gryffindor_common_room
-
-    #########################################################################
-    #########################################################################
 
     #Return the completed dictionary of locations
     return locations_dict
-
-#########################################################################
-#########################################################################
-#########################################################################

@@ -9,6 +9,7 @@ from enemies import *
 from hero import *
 from items import *
 
+
 class Game:
     """
     This is a class to represent the game itself. The class contains methods
