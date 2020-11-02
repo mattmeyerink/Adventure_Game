@@ -261,7 +261,7 @@ def add_locations(root):
     gryffindor_bottom_room = "None"
 
     gryffindor_common_room = Location(Canvas(root, width=window_width,
-        height=window_height, bg="firebrick1"), gryffindor_common_room_description,
+        height=window_height, bg="firebrick4"), gryffindor_common_room_description,
         gryffindor_top_room, gryffindor_bottom_room, gryffindor_left_room,
         gryffindor_right_room)
 

@@ -384,6 +384,12 @@ class Game:
                 self.message_canvas.delete('all')
                 self.message = enemy.name + " has been defeated!"
                 self.place_message()
+            
+            else:
+                 # Update the message
+                self.message_canvas.delete('all')
+                self.message = "You haven't destroyed all of the horcruxes yet!"
+                self.place_message()
 
         # Update message to say battle not won
         else:

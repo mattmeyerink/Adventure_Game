@@ -44,6 +44,40 @@ def add_items():
 
     items_list[2] = basalisk_fang
 
+    # Initialize Firebolt
+    firebolt = Item("Firebolt", "Firebolt. An international standard broom with "
+        + "stellar speed and handling.\n", "Main Entrance",
+        "burlywood4", window_width*3/4, window_height/2)
+    
+    items_list[3] = firebolt
+
+    # Initialize Hedwig
+    hedwig = Item("Hedwig", "Hedwig. A beautiful snow owl. A wonderful companion "
+        + "for your dangerous journey.\n", "Hagrid's Hut", "white",
+        window_width*3/4, window_height/2)
+
+    items_list[4] = hedwig
+
+    # Initialize Butterbeer
+    butterbeer = Item("Butterbeer", "Butterbeer. A tasty treat served warm or cold.\n",
+        "Upstairs Corridor", "yellow", window_width/2, window_height/2)
+    
+    items_list[5] = butterbeer
+
+    # Initialize invisibility cloak
+    invisibility_cloak = Item("Invisibility Cloak", "Invisibility Cloak. Not a" 
+        + " bad thing to have just in case!\n", "Room of Requirement", 
+        "white", window_width/2, window_height/2)
+
+    items_list[6] = invisibility_cloak
+
+    # Initialize wizard chess set
+    wizard_chess = Item("Wizard Chess", "Wizard Chess. A fun, slightly more brutal,"
+        + " take on normal chess.\n", "Ravenclaw Common Room", "gray52",
+        window_width/2, window_height/2)
+
+    items_list[7] = wizard_chess
+
     # Returns list of items
     return items_list
 
